@@ -1,38 +1,60 @@
-# Fastq Sample Sheet Generator
+# RNA-seq Pipeline Sample Sheet Generator
 
-# Overview
-This script automates the creation of sample sheets for different bioinformatics pipelines based on fastq files. It is designed to handle RNA-seq, Sarek, and Taxprofiler pipelines, ensuring the correct format for each. The script allows for input of a directory containing fastq files and generates a corresponding sample sheet in the same directory, named according to the run name extracted from the directory structure.
+This Python script automates the creation of sample sheets for RNA-seq, Sarek, and Taxprofiler pipelines, as well as dynamically updates the corresponding `params.json` files for each pipeline. It is designed to streamline the setup for running different NF-core pipelines by preparing all necessary input files and parameters based on user-provided fastq files.
 
-# Features
-Automated Sample Sheet Creation: Automatically creates sample sheets for RNA-seq, Sarek, and Taxprofiler pipelines.
-Run Name Extraction: Extracts the run name from the directory just above the fastq files for naming the sample sheet.
-Error Handling: Robust error checking for directory existence, file patterns, and ensuring each sample has exactly two fastq files (where applicable).
+## Features
 
-# Requirements
-Python 3.6 or higher
-pathlib, which should be included in standard Python installations
-Setup and Installation
-No additional libraries are required beyond the standard Python installation. Simply download the script to your local machine.
+- **Sample Sheet Creation**: Automatically generates sample sheets specific to RNA-seq, Sarek, and Taxprofiler pipelines.
+- **Dynamic Params Update**: Updates the `params.json` files specific to each pipeline, adding paths for the newly created sample sheet and a results directory.
+- **Modular Design**: Easily extendable to add more pipelines or handle additional functionalities.
+- **Environment-Aware**: Uses environment variables to adapt to different system configurations.
 
-# Usage
-To use this script, navigate to the directory where the script is located in your command line interface and run it using Python. You will be prompted to input necessary details:
+## Requirements
 
-# Path to Fastq Files: Input the full path to the directory containing your fastq files.
-Pipeline Selection: Choose the pipeline for which you want to create a sample sheet (rnaseq, sarek, taxprofiler).
-Method (Only for Sarek): If you select Sarek, specify the method (method1 for concatenated or method2 for multilane).
-Here is an example of how to run the script:
+- Python 3.6 or higher
+- Unix-like operating system (Linux, MacOS)
+- Access to a set of fastq files for processing
 
-# Copy code
-python fastq_sample_sheet_generator.py
-Follow the prompts to input the path and select the appropriate options.
+## Installation
+No additional installation steps are required beyond having Python installed. Clone this repository or download the script directly to your system.
 
-# Output
-The script will generate a sample sheet named using the parent directory of the specified fastq directory (interpreted as the run name) and will save this sample sheet in the same directory as the fastq files. An example output file name would be [run_name]_samplesheet.csv.
+```
+git clone https://your-repository-url
+cd your-repository-directory
+```
 
-# Logging
-Logs provide detailed information about the script's operations, including errors in input and issues encountered during file handling. Ensure you check the logs if you encounter issues.
+## Usage
+Run the script from the command line by providing the path to the directory containing the fastq files. The script will prompt for the necessary inputs during execution.
 
-# Contact
-For any issues or questions, please submit a problem report to the repository or contact the maintainer directly via email.
+```
+python3 nfcore_pipeline_samplesheet.py /path/to/your/fastq_files
+```
+### Step-by-step Execution
 
-This README provides the necessary information to get a user started with the script, detailing the functionality, requirements, and execution instructions. Adjust the contact section as needed to provide a way for users to reach out for support.
+1. **Specify Fastq Directory**: Provide the full path to the directory containing your fastq files.
+2. **Select Pipeline**: Choose which pipeline's sample sheet to generate (RNA-seq, Sarek, or Taxprofiler).
+3. **For Sarek**: If Sarek is selected, specify the sample processing method (`method1` for concatenated or `method2` for multilane processing).
+
+After these inputs are provided, the script will:
+- Create the sample sheet in the specified directory.
+- Update the corresponding `params.json` in the pipeline directory under the user's `.nextflow/nf-core/` directory.
+- Create a `results` directory within the same directory as the sample sheets for output data storage.
+
+## Output
+
+The script outputs:
+- A pipeline-specific sample sheet CSV file.
+- An updated `params.json` file with paths set to the newly created sample sheet and results directory.
+- A results directory ready to store pipeline output.
+
+## Contributing
+
+Contributions to this script are welcome. Please fork the repository and submit pull requests with any enhancements, bug fixes, or suggestions. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+This script is distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+For any queries regarding the script, please contact me (Andrew Geller gellerand@gmail.com)
