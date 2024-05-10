@@ -1,3 +1,5 @@
+## NOTE STILL A WORK IN PROGRESS...NOT FULLY DEPLOYED ##
+
 # RNA-seq Pipeline Sample Sheet Generator
 
 This Python script automates the creation of sample sheets for RNA-seq, Sarek, and Taxprofiler pipelines, as well as dynamically updates the corresponding `params.json` files for each pipeline. It is designed to streamline the setup for running different NF-core pipelines by preparing all necessary input files and parameters based on user-provided fastq files.
